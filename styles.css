@@ -1,0 +1,84 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-color 0.5s;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.circle, .square {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.circle-row .circle:hover:not(:active) ~ .circle, .square-row .square:hover:not(:active) ~ .square, 
+.circle-row .circle:hover:not(:active) + .circle, .square-row .square:hover:not(:active) + .square {
+    opacity: 0.5;
+}
+
+.circle-row .circle:hover:not(:active)::before, .square-row .square:hover:not(:active)::before {
+    content: attr(data-color);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.circle-row .circle::after, .square-row .square::after {
+    content: attr(data-color);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+}
+
+.circle-row .circle:active, .square-row .square:active {
+    transform: translateY(70px);
+}
+
+.circle-row .circle.red { background-color: red; }
+.circle-row .circle.green { background-color: green; }
+.circle-row .circle.blue { background-color: blue; }
+.circle-row .circle.orange { background-color: orange; }
+.circle-row .circle.yellow { background-color: yellow; }
+
+.circle {
+    border-radius: 50%;
+}
+
+.square {
+    background-color: gray;
+}
+
+.circle-row .circle:active {
+    border-radius: 0;
+}
+
+.square-row .square:active {
+    border-radius: 50%;
+}
+
+.content {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-color: white;
+        color: black;
+    }
+}
